@@ -1,0 +1,6 @@
+markovify==0.7.1
+
+python-telegram-bot==10.1.0
+git+git://github.com/NickVance/LyricsGenius.git#egg=lyricsgenius
+googletrans==2.3.0
+pymongo==3.7.1
