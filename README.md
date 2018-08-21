@@ -13,3 +13,4 @@ $ pip3 install -r requirements.txt                   # Install project dependenc
 ```bash
 $ python3 bot.py
 ```
+https://t.me/DoughBoy_bot
