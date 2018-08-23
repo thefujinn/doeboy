@@ -4,7 +4,13 @@ import lyricsgenius as genius
 import os
 from googletrans import Translator
 import pymongo
+import logging
+import timber
 
+
+logger = logging.getLogger(__name__)
+timber_handler = timber.TimberHandler(api_key=os.environ['TIMBER_TOKEN'])
+logger.addHandler(timber_handler)
 
 class Model:
     def __init__(self, db, collection_name, author_name=""):
@@ -48,20 +54,26 @@ ru_model = Model(songs_db, "ru_songs")
 en_model = Model(songs_db, "en_songs")
 
 
+def log_request(user, command, args):
+    logger.info(user['username'] + ' > ' + command + ': ' + args)
+
 def get_model(args):
     return en_model if (len(args) > 0) and (args[0] == "en") else ru_model
 
 
 def get_quote(bot, update, args):
+    log_request(update.message.from_user, 'getquote', " ".join(args))
     update.message.reply_text(get_model(args).get_quote(140))
 
 
 def get_long_quote(bot, update, args):
+    log_request(update.message.from_user, 'getstory', " ".join(args))
     update.message.reply_text(get_model(args).get_quote())
 
 
 def translate_song(bot, update, args):
     search_term = " ".join(args)
+    log_request(update.message.from_user, 'translate', search_term)
     if not search_term:
         update.message.reply_text("Give me the name, son")
     else:
