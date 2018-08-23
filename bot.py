@@ -56,10 +56,7 @@ en_model = Model(songs_db, "en_songs")
 
 
 def log_request(user, command, args):
-    user_id_str = user['username']
-    if user_id_str is None:
-        user_id_str = user['id']
-    logger.info(user_id_str + ' > ' + command + ': ' + args)
+    logger.info(user + ' > ' + command + ': ' + args)
 
 
 def get_model(args):
