@@ -11,6 +11,7 @@ import timber
 logger = logging.getLogger(__name__)
 timber_handler = timber.TimberHandler(api_key=os.environ['TIMBER_TOKEN'])
 logger.addHandler(timber_handler)
+logger.setLevel(logging.INFO)
 
 class Model:
     def __init__(self, db, collection_name, author_name=""):
