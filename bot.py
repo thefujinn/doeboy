@@ -57,10 +57,9 @@ en_model = Model(songs_db, "en_songs")
 
 def log_request(user, command, args):
     try:
-        logger.info(user + ' > ' + command + ': ' + args)
+        logger.info(str(user) + ' > ' + command + ': ' + args)
     except Exception as e:
         logger.fatal(e, exc_info=True)
-
 
 
 def get_model(args):
